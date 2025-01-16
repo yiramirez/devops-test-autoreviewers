@@ -16,5 +16,5 @@ jobs:
       - name: Assign Reviewers
         uses: kentaro-m/auto-assign-action@v1.2.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           configuration-path: .github/auto_assign.yml
