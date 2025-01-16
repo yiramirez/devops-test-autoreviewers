@@ -1,7 +1,7 @@
 addReviewers: true
 reviewers:
   - jbustillolorenzo
-  - jeimigarcia
+  - yiramirez
 teamReviewers:
   - RENFE-NSV/renfe-nsv-devops
 numberOfReviewers: 2
