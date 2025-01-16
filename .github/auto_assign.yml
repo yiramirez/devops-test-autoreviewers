@@ -1,0 +1,10 @@
+addReviewers: true
+addAssignees: false
+reviewers:
+  - jbustillolorenzo
+  - jeimigarcia
+  - mariolopezserrano96
+  - yiramirez
+teamReviewers:
+  - renfe-nsv-devops
+numberOfReviewers: 2
