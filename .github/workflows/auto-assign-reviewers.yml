@@ -6,11 +6,12 @@ on:
 jobs:
   assign-reviewers:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Assign Reviewers
         uses: kentaro-m/auto-assign-action@v1.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          reviewers: jbustillolorenzo, jeimigarcia, mariolopezserrano96, yiramirez
-          team-reviewers: renfe-nsv-devops
-          number-of-reviewers: 2
+          configuration-path: .github/auto_assign.yml
