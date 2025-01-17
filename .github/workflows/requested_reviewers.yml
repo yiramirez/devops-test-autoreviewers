@@ -23,22 +23,19 @@ jobs:
           # Lista de revisores individuales
           REVIEWERS='["jbustillolorenzo"]'
 
-          # Lista de equipos
-          TEAM_REVIEWERS='["RENFE-NSV/renfe-nsv-devops"]'
-
           # Llamada a la API para asignar revisores
           RESPONSE=$(curl -s -o response.json -w "%{http_code}" -X POST \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/pulls/$PR_NUMBER/requested_reviewers \
-            -d "{\"reviewers\": $REVIEWERS, \"team_reviewers\": $TEAM_REVIEWERS}")
+            -d "{\"reviewers\": $REVIEWERS}")
 
              # Capturar código de estado de la API
           STATUS_CODE=$(cat response.json | jq -r '.message // empty')
 
           # Verificar si los revisores se asignaron correctamente
           if [ "$STATUS_CODE" == "null" ]; then
-            echo "Added reviewers to PR #$PR_NUMBER: jbustillolorenzo, yiramirez"
+            echo "Added reviewers to PR #$PR_NUMBER: jbustillolorenzo"
           else
             echo "Error assigning reviewers: $(cat response.json)"
             exit 1
