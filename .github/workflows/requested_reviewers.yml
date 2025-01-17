@@ -21,7 +21,7 @@ jobs:
           PR_NUMBER="${{ github.event.pull_request.number }}"
           
           # Lista de revisores individuales
-          REVIEWERS='["jbustillolorenzo", "yiramirez"]'
+          REVIEWERS='["jbustillolorenzo"]'
 
           # Lista de equipos
           TEAM_REVIEWERS='["RENFE-NSV/renfe-nsv-devops"]'
