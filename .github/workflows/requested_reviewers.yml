@@ -30,13 +30,13 @@ jobs:
             https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/pulls/$PR_NUMBER/requested_reviewers \
             -d "{\"reviewers\": $REVIEWERS}")
 
-             # Capturar código de estado de la API
-          STATUS_CODE=$(cat response.json | jq -r '.message // empty')
+          HTTP_CODE="${RESPONSE}"
 
           # Verificar si los revisores se asignaron correctamente
-          if [ "$STATUS_CODE" == "null" ]; then
-            echo "Added reviewers to PR #$PR_NUMBER: jbustillolorenzo"
+          if [ "$HTTP_CODE" -eq 201 ]; then
+            echo "Successfully added reviewers to PR #$PR_NUMBER: $REVIEWERS"
           else
-            echo "Error assigning reviewers: $(cat response.json)"
+            echo "Failed to add reviewers. HTTP Code: $HTTP_CODE"
+            echo "Response: $(cat response.json)"
             exit 1
           fi
