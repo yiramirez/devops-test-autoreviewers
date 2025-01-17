@@ -14,6 +14,7 @@ jobs:
       - name: Assign Reviewers
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REVIEWERS: ${{ vars.REVIEWERS }}
         run: |
           # Variables
           REPO_OWNER="${{ github.repository_owner }}"
@@ -21,7 +22,7 @@ jobs:
           PR_NUMBER="${{ github.event.pull_request.number }}"
           
           # Lista de revisores individuales
-          REVIEWERS='["jbustillolorenzo"]'
+          echo "Reviewers: $REVIEWERS"
 
           # Llamada a la API para asignar revisores
           RESPONSE=$(curl -s -o response.json -w "%{http_code}" -X POST \
